@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-deployment
+  labels:
+    app: todo
+spec:
+  selector:
+    matchLabels:
+      app: todo
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: todo
+    spec:
+      containers:
+      - name: todo
+        image: ghcr.io/ci-cd-2024-dhbw-hdh/felix.zimmermann/todo:latest
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: regcred
